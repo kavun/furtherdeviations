@@ -1,5 +1,4 @@
-// Avoid `console` errors in browsers that lack a console.
-(function() {
+define(function () {
     var method;
     var noop = function () {};
     var methods = [
@@ -19,6 +18,6 @@
             console[method] = noop;
         }
     }
-}());
 
-// Place any jQuery/helper plugins in here.
+    return console;
+});
