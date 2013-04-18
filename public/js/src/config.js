@@ -13,7 +13,7 @@ define({
 	},
 
 	paths : {
-		'App': 'src/app/app',		
+		'App': 'src/app/init',		
 		'models': 'src/app/models',
 		'views': 'src/app/views',
 		'controllers': 'src/app/controllers',
