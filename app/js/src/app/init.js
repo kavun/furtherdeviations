@@ -1,36 +1,56 @@
 define([
+	'models/cultivation',
 
-	'views/ApplicationView',
-	'views/IndexView',
+	'views/application',
+	'views/index',
+	'views/about',
+	'views/cultivations',
+	'views/cultivation',
 
-	'controllers/ApplicationController',
-	'controllers/IndexController',
+	'controllers/application',
+	'controllers/index',
 
-	'routes/IndexRoute',
+	'routes/index',
+	'routes/cultivations',
 
-	'router'
+	'router',
+	'store'
 
-], function(
+], function (
+	Cultivation,
+
 	ApplicationView,
 	IndexView,
+	AboutView,
+	CultivationsView,
+	CultivationView,
 
 	ApplicationController,
 	IndexController,
 
 	IndexRoute,
+	CultivationsRoute,
 
-	Router){
+	Router,
+	Store){
 
 	var App = {
+		Cultivation: Cultivation,
+
 		ApplicationView: ApplicationView,
 		IndexView: IndexView,
+		AboutView: AboutView,
+		CultivationsView: CultivationsView,
+		CultivationView: CultivationView,
 
 		ApplicationController: ApplicationController,
 		IndexController: IndexController,
 		
 		IndexRoute: IndexRoute,
+		CultivationsRoute: CultivationsRoute,
 
-		Router: Router
+		Router: Router,
+		Store: Store
 	};
 
 	return App;
