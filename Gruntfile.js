@@ -14,7 +14,8 @@ module.exports = function (grunt) {
 					module: true,
 					require: true,
 					requirejs: true,
-					define: true
+					define: true,
+					Cultivate: true
 				},
 				node: true,
 				browser: true

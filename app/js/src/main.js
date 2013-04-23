@@ -1,6 +1,6 @@
 (function(root){
 
-	require([ 'config' ], function(config){
+	require([ 'requirejs-config' ], function(config){
 
 		requirejs.config(config);
 
