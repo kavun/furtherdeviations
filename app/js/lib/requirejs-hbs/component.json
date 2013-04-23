@@ -1,0 +1,9 @@
+{
+  "name": "requirejs-hbs",
+  "version": "0.0.0",
+  "commit": "edb99233766ca4bcceef242582d2747ed2e6c006",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/epeli/requirejs-hbs.git"
+  }
+}

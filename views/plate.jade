@@ -13,7 +13,7 @@ head
 	meta(charset='utf-8')
 	meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
 
-	title= title
+	title=title
 
 	meta(name='description', content='')
 	meta(name='viewport', content='width=device-width')
@@ -23,8 +23,6 @@ head
 	link(rel='stylesheet', href='css/normalize.css')
 	link(rel='stylesheet', href='css/main.css')
 
-	script(src='js/lib/modernizr-2.6.2.min.js')
-
 body
 	//if lt IE 8
 		p.chromeframe.
@@ -33,4 +31,4 @@ body
 		<a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a>
 		to improve your experience.
 
-	script(data-main='js/src/main', src='js/lib/requirejs/require-jquery-2.1.5.js')
+	script(data-main='js/src/main', src='js/lib/requirejs/require.js')
