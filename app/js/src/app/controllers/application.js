@@ -1,6 +1,7 @@
-define(['ember'], function(Ember){
-	var application = Ember.Controller.extend({
+define(function () {
+
+	return Ember.Controller.extend({
 
 	});
-	return application;
+
 });

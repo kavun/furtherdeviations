@@ -1,6 +1,7 @@
-define([ 'ember' ], function (Ember) {
-	var index = Ember.Controller.extend({
+define(function () {
+	
+	return Ember.Controller.extend({
 
 	});
-	return index;
+
 });

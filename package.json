@@ -1,5 +1,5 @@
 {
-  "name": "cultivate",
+  "name": "further-deviations",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -15,6 +15,7 @@
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.4.3",
-    "grunt-contrib-watch": "~0.3.1"
+    "grunt-contrib-watch": "~0.3.1",
+    "grunt-contrib-requirejs": "~0.4.0"
   }
 }

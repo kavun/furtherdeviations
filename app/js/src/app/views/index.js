@@ -1,11 +1,9 @@
 define([
-	'ember',
 	'text!templates/index.html'
-], function(Ember, template) {
+], function (template) {
 
-	var index = Ember.View.extend({
+	return Ember.View.extend({
 		defaultTemplate: Ember.Handlebars.compile(template)
 	});
 
-	return index;
 });

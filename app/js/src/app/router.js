@@ -1,14 +1,17 @@
-define(['ember'], function (Ember){
+define(function () {
 
 	var router = Ember.Router.extend();
 
 	router.map(function () {
+
 		this.resource('about');
-		this.resource('cultivations', function () {
-			this.resource('cultivation', { 
-				path: ':cultivation_id' 
+
+		this.resource('deviations', function () {
+			this.resource('deviation', { 
+				path: ':deviation_id' 
 			});
 		});
+		
 		this.route('index', {
 			path: '/'
 		});

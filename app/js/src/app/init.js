@@ -1,56 +1,68 @@
 define([
-	'models/cultivation',
+	
+	'router',
+	'store',
 
 	'views/application',
-	'views/index',
-	'views/about',
-	'views/cultivations',
-	'views/cultivation',
-
 	'controllers/application',
-	'controllers/index',
 
 	'routes/index',
-	'routes/cultivations',
+	'views/index',
+	'controllers/index',
 
-	'router',
-	'store'
+	'views/about',
 
+	'models/deviation',
+
+	'routes/deviations',
+	'views/deviations',
+
+	'views/deviation'
+	
 ], function (
-	Cultivation,
-
-	ApplicationView,
-	IndexView,
-	AboutView,
-	CultivationsView,
-	CultivationView,
-
-	ApplicationController,
-	IndexController,
-
-	IndexRoute,
-	CultivationsRoute,
 
 	Router,
-	Store){
+	Store,
+
+	ApplicationView,
+	ApplicationController,
+
+	IndexRoute,
+	IndexView,
+	IndexController,
+
+	AboutView,
+
+	Deviation,
+
+	DeviationsRoute,
+	DeviationsView,
+
+	DeviationView
+
+	){
 
 	var App = {
-		Cultivation: Cultivation,
-
-		ApplicationView: ApplicationView,
-		IndexView: IndexView,
-		AboutView: AboutView,
-		CultivationsView: CultivationsView,
-		CultivationView: CultivationView,
-
-		ApplicationController: ApplicationController,
-		IndexController: IndexController,
-		
-		IndexRoute: IndexRoute,
-		CultivationsRoute: CultivationsRoute,
 
 		Router: Router,
-		Store: Store
+		Store: Store,
+
+		ApplicationView: ApplicationView,
+		ApplicationController: ApplicationController,
+
+		IndexRoute: IndexRoute,
+		IndexView: IndexView,
+		IndexController: IndexController,
+
+		AboutView: AboutView,
+
+		Deviation: Deviation,
+
+		DeviationsRoute: DeviationsRoute,
+		DeviationsView: DeviationsView,
+
+		DeviationView: DeviationView
+		
 	};
 
 	return App;

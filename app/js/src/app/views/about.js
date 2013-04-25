@@ -1,11 +1,9 @@
 define([
-	'ember',
 	'text!templates/about.html'
-], function(Ember, template) {
+], function (template) {
 
-	var about = Ember.View.extend({
+	return Ember.View.extend({
 		defaultTemplate: Ember.Handlebars.compile(template)
 	});
 
-	return about;
 });
