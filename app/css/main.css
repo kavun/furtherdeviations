@@ -95,20 +95,39 @@ textarea {
 
 body {
     margin: 100px;
+    padding-top: 60px;
 }
 
+.columns3 {
+    -moz-column-count:3; /* Firefox */
+    -webkit-column-count:3; /* Safari and Chrome */
+    column-count:3;
+}
+.columns2 {
+    -moz-column-count:2; /* Firefox */
+    -webkit-column-count:2; /* Safari and Chrome */
+    column-count:2;
+}
+.deviation {
+    font-family: 'Palatino', 'Palatino Linotype', Georgia, serif;
+}
+.meta{
+  border-top:1px solid #333;
+  text-align:center;
+  margin-top: 20px;
+}
 
-
-
-
-
-
-
-
-
-
-
-
+.meta h2{
+  display:inline-block;
+  margin:0;
+  padding:0 20px;
+  background:white;
+  position:relative;
+  top:-20px;
+  font-size:18px;
+  text-transform:uppercase;
+  letter-spacing:3px;
+}
 
 
 /* ==========================================================================

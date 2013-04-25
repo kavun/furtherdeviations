@@ -11,6 +11,9 @@ requirejs.config({
 		'ember-data': {
 			deps: [ 'ember' ],
 			exports: 'DS'
+		},
+		'bootstrap': {
+			deps: [ 'jQuery' ]
 		}
 	},
 
@@ -33,6 +36,7 @@ requirejs.config({
 		'ember-data': 'lib/ember-data/ember-data',
 		'jquery': 'lib/jquery/jquery',
 		'moment': 'lib/moment/moment',
+		'bootstrap': 'lib/bootstrap/bootstrap',
 
 		// requirejs-plugins
 		'text': 'lib/requirejs-text/text',
