@@ -1,7 +1,6 @@
 # Cultivate
 
- - [cultivate.azurewebsites.net](http://cultivate.azurewebsites.net/)
- - [Cultivate Wiki](https://bitbucket.org/kavunr/cultivate/wiki/Home)
+ - [furtherdeviations.azurewebsites.net](http://furtherdeviations.azurewebsites.net/)
 
 ## TODO - kev
 
