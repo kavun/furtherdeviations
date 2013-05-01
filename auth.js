@@ -44,9 +44,7 @@ var Auth = (function () {
 		)
 		.redirectPath('/');
 
-	return {
-		everyauth: everyauth
-	}
+	return everyauth;
 
 })();
 

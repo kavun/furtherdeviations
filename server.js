@@ -20,7 +20,7 @@ app.use(express.methodOverride());
 //auth
 app.use(express.cookieParser());
 app.use(express.session({ secret: conf.session.secret }));
-app.use(auth.everyauth.middleware(app));
+app.use(auth.middleware(app));
 
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'app')));
