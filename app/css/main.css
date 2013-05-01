@@ -129,6 +129,13 @@ body {
   letter-spacing:3px;
 }
 
+.twitter-signin {
+  background: url('/img/sign-in-with-twitter-gray.png');
+  width: 158px;
+  height: 28px;
+  display: inline-block;
+}
+
 
 /* ==========================================================================
    Helper classes

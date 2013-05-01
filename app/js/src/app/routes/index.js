@@ -2,11 +2,17 @@ define(function () {
 	
 	return Ember.Route.extend({
 		model: function () {
-			return [
-				'HTML5 Boilerplate', 
-				'RequireJS',
-				'EmberJS'
-			];
+			var user = {};
+
+			$.ajax({
+				url: '/api/user',
+				success: function (_user) {
+					user = _user
+				},
+				async: false
+			});
+
+			return user;
 		}
 	});
 

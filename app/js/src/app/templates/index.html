@@ -10,22 +10,19 @@
 	</div>
 	<div class="span4">
 		<div class="well">
-        <legend>Sign in</legend>
-    	<input class="span8" placeholder="Username" type="text" name="username">
-    	<input class="span8" placeholder="Password" type="password" name="password">
-        <label class="checkbox">
-            <input type="checkbox" name="remember" value="1">Remember Me
-        </label>
-        <p>
-	        <button class="btn" type="submit">Login</button>
-	    </p>
-        <p>
-	        <button class="btn" type="submit">Google</button>
-	        <button class="btn" type="submit">Facebook</button>
-	        <button class="btn" type="submit">Yahoo!</button>
-	        <button class="btn" type="submit">Twitter</button>
-	        <button class="btn" type="submit">Open ID</button>
-	    </p>
-      </div>
+			{{#if model.twitter}}
+			<h3>Welcome {{model.twitter.name}}</h3>
+			{{else}}
+			<legend>Sign in</legend>
+			{{!<input class="span8" placeholder="Username" type="text" name="username">
+			<input class="span8" placeholder="Password" type="password" name="password">
+			<label class="checkbox">
+			<input type="checkbox" name="remember" value="1">Remember Me
+			</label>}}
+			<p>
+			<a class="twitter-signin" href="/auth/twitter"></a>
+			</p>
+			{{/if}}
+		</div>
 	</div>
 </div>
