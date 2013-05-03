@@ -63,7 +63,7 @@ require([
 	
 	require([ 'init' ], function (init) {
 		var app_name = 'FurtherDeviations';
-		window[app_name] = init = Ember.Application.create(init);
+		window[app_name] = init = Ember.Application.createWithMixins(init);
 
 		Ember.Handlebars.registerBoundHelper('date', function (date) {
 			return moment(date).fromNow();

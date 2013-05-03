@@ -13,11 +13,11 @@ define([
 	'views/about',
 
 	'models/deviation',
-
+	'views/deviation',
 	'routes/deviations',
 	'views/deviations',
 
-	'views/deviation'
+	'models/story'
 	
 ], function (
 
@@ -34,11 +34,11 @@ define([
 	AboutView,
 
 	Deviation,
-
+	DeviationView,
 	DeviationsRoute,
 	DeviationsView,
 
-	DeviationView
+	Story
 
 	){
 
@@ -61,7 +61,9 @@ define([
 		DeviationsRoute: DeviationsRoute,
 		DeviationsView: DeviationsView,
 
-		DeviationView: DeviationView
+		DeviationView: DeviationView,
+
+		Story: Story
 		
 	};
 

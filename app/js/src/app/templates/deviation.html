@@ -1,3 +1,8 @@
 <h1>{{title}}</h1>
-<div class="meta"><h2>by {{author}} <small class="muted">{{date datePublished}}</small></h2></div>
-<div class="below-the-fold columns2 deviation">{{full}}</div>
+<div class="meta"><h2>{{date datePublished}}</h2></div>
+<div class="below-the-fold columns2 deviation">{{desciption}}</div>
+<ul>
+{{#each stories}}
+	<li>{{author}}&nbsp;-&nbsp;{{title}}&nbsp;({{date dateWritten}})</li>
+{{/each}}
+</ul>

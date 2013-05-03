@@ -6,10 +6,9 @@ define(function () {
 
 			$.ajax({
 				url: '/api/user',
-				success: function (_user) {
-					user = _user
-				},
 				async: false
+			}).done(function (_user) { 
+				user = _user;
 			});
 
 			return user;
