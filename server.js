@@ -5,15 +5,22 @@ var	path = require('path');
 var	conf = require('./conf');
 var auth = require('./auth');
 
-
+app.set('env', 'production');
 // db
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/furtherdeviations');
+
+if (app.get('env') == 'development') {
+	mongoose.connect('mongodb://localhost/furtherdeviations');
+} else if (app.get('env') == 'production') {
+	mongoose.connect(process.env.CUSTOMCONNSTR_MONGOLAB_URI);
+}
 var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function callback () {
-  console.log('db at "mongodb://localhost/furtherdeviations" open')
-});
+if (app.get('env') == 'development') {
+	db.on('error', console.error.bind(console, 'connection error:'));
+	db.once('open', function callback () {
+	  console.log('db at "mongodb://localhost/furtherdeviations" open')
+	});
+}
 
 var app = express();
 
