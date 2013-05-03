@@ -4,27 +4,18 @@ var	http = require('http');
 var	path = require('path');
 var	conf = require('./conf');
 var auth = require('./auth');
-
-
-// db
 var mongoose = require('mongoose');
-
-
-
 var app = express();
-app.set('env', 'production');
-if (app.get('env') == 'development') {
-	mongoose.connect('mongodb://localhost/furtherdeviations');
-} else if (app.get('env') == 'production') {
-	mongoose.connect(process.env.CUSTOMCONNSTR_MONGOLAB_URI);
-}
+
+//mongoose.connect('mongodb://localhost/furtherdeviations');
+//mongoose.connect(process.env.CUSTOMCONNSTR_MONGOLAB_URI);
+mongoose.connect('mongodb://MongoLab-kb:3rV8tEMPdCbIRtS!3a4rt4F2YL2ArOvqIJW!uKbInuQ-@ds045077.mongolab.com:45077/MongoLab-kb');
+
 var db = mongoose.connection;
-if (app.get('env') == 'development') {
-	db.on('error', console.error.bind(console, 'connection error:'));
-	db.once('open', function callback () {
-	  console.log('db at "mongodb://localhost/furtherdeviations" open')
-	});
-}
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback () {
+  console.log('db at "mongodb://localhost/furtherdeviations" open')
+});
 
 // all environments
 app.set('port', process.env.PORT || 3000);
