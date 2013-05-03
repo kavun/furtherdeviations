@@ -5,10 +5,14 @@ var	path = require('path');
 var	conf = require('./conf');
 var auth = require('./auth');
 
-app.set('env', 'production');
+
 // db
 var mongoose = require('mongoose');
 
+
+
+var app = express();
+app.set('env', 'production');
 if (app.get('env') == 'development') {
 	mongoose.connect('mongodb://localhost/furtherdeviations');
 } else if (app.get('env') == 'production') {
@@ -21,8 +25,6 @@ if (app.get('env') == 'development') {
 	  console.log('db at "mongodb://localhost/furtherdeviations" open')
 	});
 }
-
-var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
