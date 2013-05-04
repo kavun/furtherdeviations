@@ -7,7 +7,7 @@ var auth = require('./auth');
 var mongoose = require('mongoose');
 
 var app = express();
-	app.set('env', 'development');
+	app.set('env', 'production');
 
 app.configure('development', function() {
 	mongoose.connect(conf.db.dev);
@@ -143,7 +143,6 @@ new Deviation({
 
 // list
 app.get('/api/deviations', function api_list_deviations (req, res) {
-	debugger;
 	Deviation
 		.find()
 		.populate('stories')
@@ -153,7 +152,6 @@ app.get('/api/deviations', function api_list_deviations (req, res) {
 });
 // read
 app.get('/api/deviations/:id', function api_read_deviations (req, res) {
-	debugger;
 	Deviation
 		.findById(req.params.id)
 		.populate('stories')
