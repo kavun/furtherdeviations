@@ -16,6 +16,10 @@ define(function () {
 		namespace: 'api'
 	});
 
+	DS.MongoDBAdapter.map('FurtherDeviations.Deviation', {
+		stories: { embedded: 'load' }
+	});
+
 	var store = DS.Store.extend({
 		revision: 12,
 		adapter : 'DS.MongoDBAdapter'

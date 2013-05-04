@@ -5,16 +5,23 @@ var	path = require('path');
 var	conf = require('./conf');
 var auth = require('./auth');
 var mongoose = require('mongoose');
+
 var app = express();
+	app.set('env', 'development');
 
-//mongoose.connect('mongodb://localhost/furtherdeviations');
-//mongoose.connect(process.env.CUSTOMCONNSTR_MONGOLAB_URI);
-mongoose.connect('mongodb://MongoLab-kb:3rV8tEMPdCbIRtS!3a4rt4F2YL2ArOvqIJW!uKbInuQ-@ds045077.mongolab.com:45077/MongoLab-kb');
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function callback () {
-  console.log('db at "mongodb://localhost/furtherdeviations" open')
+app.configure('development', function() {
+	mongoose.connect(conf.db.dev);
+	var db = mongoose.connection;
+	db.on('error', console.error.bind(console, conf.color.brightred + 'connection error:' + conf.color.reset));
+	db.once('open', function () {
+		console.log('mongoose connected to ' + conf.color.brightcyan + conf.db.dev + conf.color.reset);
+	});
+});
+app.configure('test', function() {
+	mongoose.connect(conf.db.test);
+});
+app.configure('production', function() {
+	mongoose.connect(process.env.CUSTOMCONNSTR_MONGOLAB_URI || conf.db.prod);
 });
 
 // all environments
@@ -52,6 +59,7 @@ app.get('/api/user', function api_user (req, res) {
 var models = require('./models/models');
 
 var Deviation = models.Deviation(mongoose);
+var Story = models.Story(mongoose);
 
 new Deviation({
 	title         : 'Test Deviation 3',
@@ -59,28 +67,36 @@ new Deviation({
 	description   : 'this is a little bit of a description'
 }).save(function (err, dev) {
 	if (err) console.log(err);
-	else console.log(dev);
+	else console.log(conf.color.brightyellow + dev._id + conf.color.reset);
 
 	new Story({
-		deviation: dev._id,
+		deviation_id: dev._id,
 		date_written: new Date,
 		title: 'First Story',
 		author: 'Kevin Reed',
 		description: 'ehh pretty good'
-	}).save(function (err, dev) {
-		if (err) console.log(err);
-		else console.log(dev);
+	}).save(function (err, story) {
+		if (err) { console.log(err); }
+		else {
+			dev.stories.push(story._id);
+			dev.save();
+			console.log(conf.color.brightgreen + story._id + conf.color.reset);
+		}
 	});
 
 	new Story({
-		deviation: dev._id,
+		deviation_id: dev._id,
 		date_written: new Date,
 		title: 'Second Story',
 		author: 'Kevin Reed',
 		description: 'terrible'
-	}).save(function (err, dev) {
-		if (err) console.log(err);
-		else console.log(dev);
+	}).save(function (err, story) {
+		if (err) { console.log(err); }
+		else {
+			dev.stories.push(story._id);
+			dev.save();
+			console.log(conf.color.brightgreen + story._id + conf.color.reset);
+		}
 	});
 });
 
@@ -90,28 +106,36 @@ new Deviation({
 	description   : 'this is a little bit of a description'
 }).save(function (err, dev) {
 	if (err) console.log(err);
-	else console.log(dev);
+	else console.log(conf.color.brightyellow + dev._id + conf.color.reset);
 
 	new Story({
-		deviation: dev._id,
+		deviation_id: dev._id,
 		date_written: new Date,
 		title: 'First Piece',
 		author: 'Kevin Reed',
 		description: 'ehh pretty good'
-	}).save(function (err, dev) {
-		if (err) console.log(err);
-		else console.log(dev);
+	}).save(function (err, story) {
+		if (err) { console.log(err); }
+		else {
+			dev.stories.push(story._id);
+			dev.save();
+			console.log(conf.color.brightgreen + story._id + conf.color.reset);
+		}
 	});
 
 	new Story({
-		deviation: dev._id,
+		deviation_id: dev._id,
 		date_written: new Date,
 		title: 'Second Piece',
 		author: 'Kevin Reed',
 		description: 'terrible'
-	}).save(function (err, dev) {
-		if (err) console.log(err);
-		else console.log(dev);
+	}).save(function (err, story) {
+		if (err) { console.log(err); }
+		else {
+			dev.stories.push(story._id);
+			dev.save();
+			console.log(conf.color.brightgreen + story._id + conf.color.reset);
+		}
 	});
 });
 
@@ -119,6 +143,7 @@ new Deviation({
 
 // list
 app.get('/api/deviations', function api_list_deviations (req, res) {
+	debugger;
 	Deviation
 		.find()
 		.populate('stories')
@@ -128,6 +153,7 @@ app.get('/api/deviations', function api_list_deviations (req, res) {
 });
 // read
 app.get('/api/deviations/:id', function api_read_deviations (req, res) {
+	debugger;
 	Deviation
 		.findById(req.params.id)
 		.populate('stories')
@@ -149,17 +175,17 @@ app.del('/api/deviation/:id', function api_delete_deviations (req, res) {
 });
 
 
-var Story = models.Story(mongoose);
+
 
 // list
 app.get('/api/stories', function api_list_stories (req, res) {
-	Story.find(function (err, stories) {
+	Story.find().populate('deviation').exec(function (err, stories) {
 		if (!err) res.send({ stories: stories });
 	});
 });
 // read
 app.get('/api/stories/:id', function api_read_stories (req, res) {
-	Story.findById(req.params.id, function (err, story) {
+	Story.findById(req.params.id).populate('deviation').exec(function (err, story) {
 		if (!err) res.send({ story: story });
 	});
 });
@@ -181,6 +207,6 @@ app.del('/api/stories/:id', function api_delete_stories (req, res) {
 
 // init server
 http.createServer(app).listen(app.get('port'), function () {
-	console.log('Express server listening on port ' + app.get('port'));
+	console.log('Express server listening on port ' + conf.color.brightcyan + app.get('port') + conf.color.reset);
 });
 

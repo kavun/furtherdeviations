@@ -4,7 +4,7 @@ module.exports = (function () {
 
 	var StorySchema = new Schema({
 
-		deviation   : { type: Schema.Types.ObjectId, ref: 'Deviation' },
+		deviation_id: { type: Schema.Types.ObjectId, ref: 'Deviation' },
 		title       : String,
 		author      : String,
 		date_written: Date,
