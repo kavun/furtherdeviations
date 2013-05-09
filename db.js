@@ -9,7 +9,7 @@ module.exports = {
 		var db = mongoose.connection;
 		db.on('error', console.error.bind(console, conf.color.brightred + 'connection error:' + conf.color.reset));
 		db.once('open', function () {
-			console.log('mongoose connected to ' + conf.color.brightcyan + conf.db.dev + conf.color.reset);
+			console.log('mongoose connected to ' + conf.color.brightcyan + url + conf.color.reset);
 		});
 	},
 

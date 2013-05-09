@@ -7,6 +7,9 @@ var db = require('./db');
 var router = require('./routes/router');
 var app = express();
 
+app.set('env', 'production');
+console.log(conf.color.brightmagenta + app.get('env') + conf.color.reset + ' environment started');
+
 app.configure(function () {
 	app.set('port', process.env.PORT || 3000);
 	app.set('views', __dirname + '/views');
@@ -23,30 +26,30 @@ app.configure(function () {
 });
 
 // error handlers
-app.configure('development', function() {
+if (app.get('env') == 'development') {
 	app.use(express.errorHandler({ 
 		dumpExceptions: true, 
 		showStack: true
 	}));
 
 	db.connect(conf.db.dev);
-});
-app.configure('test', function() {
+}
+if (app.get('env') == 'test') {
 	app.use(express.errorHandler({ 
 		dumpExceptions: true, 
 		showStack: true
 	}));
 
 	db.connect(conf.db.test);
-});
-app.configure('production', function() {
+}
+if (app.get('env') == 'production') {
 	app.use(express.errorHandler());
 
 	db.connect(
 		process.env.CUSTOMCONNSTR_MONGOLAB_URI || 
 		conf.db.prod
 	);
-});
+}
 
 router.use(app);
 
