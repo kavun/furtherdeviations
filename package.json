@@ -13,7 +13,7 @@
     "passport": "~0.1.16"
   },
   "engines": {
-    "node": ">=0.8"
+    "node": ">=0.8.2"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
