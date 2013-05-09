@@ -1,6 +1,6 @@
 module.exports = {
 	twitter: {
-		consumerKey: 'mMp4tn5uvY4uEnTjkRQdg',
+		consumerKey   : 'mMp4tn5uvY4uEnTjkRQdg',
 		consumerSecret: 'SaRb3LbuKhyqhs9ptcTGpVxvM2pYTKbKxatfBtueFbY'
 	},
 	session: {
@@ -8,7 +8,7 @@ module.exports = {
 	},
 	db: {
 		prod: 'mongodb://MongoLab-kb:3rV8tEMPdCbIRtS!3a4rt4F2YL2ArOvqIJW!uKbInuQ-@ds045077.mongolab.com:45077/MongoLab-kb',
-		dev: 'mongodb://localhost/furtherdeviations-dev',
+		dev : 'mongodb://localhost/furtherdeviations-dev',
 		test: 'mongodb://localhost/furtherdeviations-test'
 	},
 	color: {

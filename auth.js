@@ -27,10 +27,9 @@ var Auth = (function () {
 		})
 	};
 
-	everyauth.everymodule
-		.findUserById( function (id, callback) {
-			callback(null, usersById[id]);
-		});
+	everyauth.everymodule.findUserById(function (id, callback) {
+		callback(null, usersById[id]);
+	});
 
 	everyauth.twitter
 		.consumerKey(conf.twitter.consumerKey)
