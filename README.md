@@ -1,9 +1,12 @@
-# Cultivate
+# UPDATED app location
 
- - [furtherdeviations.azurewebsites.net](http://furtherdeviations.azurewebsites.net/)
+Y'all can check up on my progress at the heroku app from now on.
+
+- [http://furtherdeviations.herokuapp.com/](http://furtherdeviations.herokuapp.com/)
+- http://furtherdeviations.azurewebsites.net/ is obsolete unless I decide to us it again
 
 ## TODO - kev
 
-1. Stub Express REST API **or** use `DS.Store` `FixtureAdapter`
-2. Create 'splash' page with login
-3. Use [everyauth](https://github.com/bnoguchi/everyauth) for login
+1. Create 'splash' page with login
+2. Scrap `everyauth` code, use `passport.js` for login
+3. Bake in authentication
