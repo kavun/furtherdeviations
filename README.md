@@ -1,9 +1,7 @@
-# UPDATED app location
-
-Y'all can check up on my progress at the heroku app from now on.
+# Further Deviations
 
 - [http://furtherdeviations.herokuapp.com/](http://furtherdeviations.herokuapp.com/)
-- http://furtherdeviations.azurewebsites.net/ is obsolete unless I decide to us it again
+- http://furtherdeviations.azurewebsites.net/ is obsolete unless I decide to use it again
 
 ## TODO - kev
 
