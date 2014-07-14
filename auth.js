@@ -4,31 +4,47 @@ var Auth = (function () {
 	var everyauth = require('everyauth');
 	everyauth.debug = true;
 
-	function addUser (source, sourceUser) {
-		var user;
-		if (arguments.length === 1) { // password-based
-			user = sourceUser = source;
-			user.id = ++nextUserId;
-			return usersById[nextUserId] = user;
-		} else { // non-password-based
-			user = usersById[++nextUserId] = {id: nextUserId};
-			user[source] = sourceUser;
+	function UserCollection (sources) {
+		this._uid = 0;
+		this.byID = {};
+		this.byLogin = {};
+		if (Array.isArray(sources)) {
+			for (var i = 0, l = sources.length; i < l; i++) {
+				this['by' + sources[i] + 'ID'] = {};
+			}
 		}
-		return user;
 	}
-
-	var usersById = {};
-	var nextUserId = 0;
-	var usersByTwitId = {};
-	var usersByLogin = {
-		'kevin.a.reed@gmail.com': addUser({ 
-			login: 'kevin.a.reed@gmail.com', 
-			password: 'password'
-		})
-	};
+	UserCollection.prototype = {
+		create: function (source, meta) {
+			var user;
+			if (arguments.length === 1) { // password based
+				user = source;
+				user.id = ++this._uid;
+				/**
+				 * user.password = hashSalt(user.password)
+				 */
+				this.byID[this._uid] = user;
+			} else { // source based (twitter)
+				user = this.byID[++this._uid] = { id: this._uid };
+				user[source] = meta;
+				this['by' + source + 'ID'][meta.id] = user;
+			}
+			return user;
+		},
+		findOrCreate: function (source, meta) {
+			var user;
+			if (arguments.length === 1) { // password based
+				user = this.byLogin[source.login] || this.create(source);
+			} else { // source based (twitter)
+				user = this['by' + source + 'ID'][meta.id] || this.create(source, meta);
+			}
+			return user;
+		}
+	}
+	var userCollection = new UserCollection(['twitter']);
 
 	everyauth.everymodule.findUserById(function (id, callback) {
-		callback(null, usersById[id]);
+		callback(null, userCollection.byID[id]);
 	});
 
 	everyauth.twitter
@@ -36,9 +52,7 @@ var Auth = (function () {
 		.consumerSecret(conf.twitter.consumerSecret)
 		.findOrCreateUser(
 			function _findOrCreateUser(session, accessToken, accessTokenSecret, twitterUserMetadata) {
-				var _user = usersByTwitId[twitterUserMetadata.id] || (usersByTwitId[twitterUserMetadata.id] = addUser('twitter', twitterUserMetadata));
-				console.log(_user);
-				return _user;
+				return userCollection.findOrCreate('twitter', twitterUserMetadata);
 			}
 		)
 		.redirectPath('/');

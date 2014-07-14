@@ -7,7 +7,7 @@ var db = require('./db');
 var router = require('./routes/router');
 var app = express();
 
-app.set('env', 'production');
+app.set('env', 'development');
 console.log(conf.color.brightmagenta + app.get('env') + conf.color.reset + ' environment started');
 
 app.configure(function () {
